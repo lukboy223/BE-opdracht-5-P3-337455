@@ -32,4 +32,16 @@ class ProductController extends Controller
 
         return view('producten.index');
     }
+    function view($name)
+    {
+        try{
+            $data = DB::select('call sp_read_product(?)', [$name]);
+
+            // dd($data);
+        } catch (\Exception $e) {
+            return redirect()->route('home')->with('error', 'Er is iets fout gegaan');
+            log($e->getMessage());
+        }
+        return view('producten.view', ['data' => $data]);
+    }
 }

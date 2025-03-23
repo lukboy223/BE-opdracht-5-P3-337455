@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1 class="w-full text-center text-5xl p-4">Overzicht producten per periode</h1>
-    <ul>
+    <ul class="w-3/4 m-auto mt-10">
         <li class="m-2">
             <a href="{{route('home')}}">Home</a>
         </li>
@@ -30,7 +30,7 @@
     <table class="w-3/4 bg-white dark:bg-gray-800 m-auto mt-5 mb-5">
         <thead class="bg-gray-200">
             <tr>
-                <th class="px-4 py-2 border-b-2 border-r border-gray-300 text-left leading-4  tracking-wider"
+                <th class="px-4 py-2 border-b-2 border-x border-gray-300 text-left leading-4  tracking-wider"
                 >Naam leverancier</th>
                 <th class="px-4 py-2 border-b-2 border-r border-gray-300 text-left leading-4  tracking-wider">
                 Contact persoon</th>
@@ -50,11 +50,11 @@
                 @else
             @foreach ($products as $product)
                 <tr class="bg-white">
-                    <td class="px-4 py-2 border-b border-gray-300 border-r">{{ $product->Leverancier }}</td>
+                    <td class="px-4 py-2 border-b border-gray-300 border-x">{{ $product->Leverancier }}</td>
                     <td class="px-4 py-2 border-b border-gray-300 border-r">{{ $product->contact_persoon }}</td>
                     <td class="px-4 py-2 border-b border-gray-300 border-r">{{ $product->Naam }}</td>
                     <td class="px-4 py-2 border-b border-gray-300 border-r">{{ $product->Aantal }}</td>
-                    <td class="px-4 py-2 border-b border-gray-300 border-r"><a href="">?</a></td>
+                    <td class="px-4 py-2 border-b border-gray-300 border-r"><a href="{{route('producten.view' , $product->Naam)}}">?</a></td>
                 </tr>
             @endforeach
             @endif

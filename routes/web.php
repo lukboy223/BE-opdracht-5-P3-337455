@@ -9,3 +9,4 @@ Route::get('/', function () {
 
 Route::get('/producten', [ProductController::class, 'index'])->name('producten.index'); 
 Route::post('/producten/filter', [ProductController::class, 'index'])->name('producten.indexFilter');
+Route::get('/product/view/{name}', [ProductController::class, 'view'])->name('producten.view');
