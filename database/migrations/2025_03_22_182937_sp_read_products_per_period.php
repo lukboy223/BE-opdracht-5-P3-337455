@@ -36,7 +36,7 @@ return new class extends Migration
 
         WHERE PPL.Datum_levering BETWEEN start_date AND end_date
         GROUP BY PROD.Naam, LEV.Naam, LEV.contact_persoon;
-
+        ORDER BY LEV.Naam
         END
         ');
     }
