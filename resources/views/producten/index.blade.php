@@ -9,16 +9,21 @@
 </head>
 <body>
     <h1 class="w-full text-center text-5xl p-4">Overzicht producten per periode</h1>
-    <form action="{{route('producten.index')}}" method="post" class="w-3/4 m-auto">
+    <ul>
+        <li class="m-2">
+            <a href="{{route('home')}}">Home</a>
+        </li>
+    </ul>
+
+    <form action="{{route('producten.indexFilter')}}" method="post" class="w-3/4 m-auto">
         @csrf
-        <label for="start_date">Start datum</label>
-        <input type="date" name="start_date" id="start_date" class="w-full p-2 border border-gray-300 mb-2">
-        <label for="end_date">Eind datum</label>
-        <input type="date" name="end_date" id="end_date" class="w-full p-2 border border-gray-300 mb-2">
+        <label for="dateFrom">Start datum</label>
+        <input type="date" name="dateFrom" id="dateFrom" class="w-full p-2 border border-gray-300 mb-2">
+        <label for="dateTo">Eind datum</label>
+        <input type="date" name="dateTo" id="dateTo" class="w-full p-2 border border-gray-300 mb-2">
         <button type="submit" class="w-full p-2 bg-blue-500 text-white">Zoeken</button>
-        
-        
     </form>
+
     @if (session('error'))
         <p class="m-auto w-3/4 bg-red-700 text-white">{{session('error')}}</p>
     @endif
@@ -38,9 +43,9 @@
             </tr>
         </thead>
         <tbody>
-            @if(is_null($products))
-                <tr class="bg-white">  
-                    <td colspan="5">Geen producten gevonden</td>
+            @if(collect($products)->isEmpty())
+                <tr class="bg-red-500 text-center text-white">  
+                    <td colspan="5">Er zijn geen leveringen geweest van producten in deze periode</td>
                 </tr>
                 @else
             @foreach ($products as $product)

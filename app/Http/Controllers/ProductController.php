@@ -9,8 +9,10 @@ use function Illuminate\Log\log;
 
 class ProductController extends Controller
 {
-    function index($dateFrom = null, $dateTo = null)
+    function index(Request $request)
     {
+        $dateFrom = $request->input('dateFrom');
+        $dateTo = $request->input('dateTo');
 
         if ($dateFrom == null) {
             $dateFrom = "1900-01-01";
@@ -20,7 +22,7 @@ class ProductController extends Controller
         }
         try {
             $products = DB::select('call sp_read_products_per_period(?, ?)', [$dateFrom, $dateTo]);
-            
+
             return view('producten.index', ['products' => $products]);
 
         } catch (\Exception $e) {

@@ -8,4 +8,4 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/producten', [ProductController::class, 'index'])->name('producten.index'); 
-Route::post('/producten/{dateFrom}/{dateTo}', [ProductController::class, 'index'])->name('producten.index');
+Route::post('/producten/filter', [ProductController::class, 'index'])->name('producten.indexFilter');
